@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-book: Menos Custos, Mais Eficiência</title>
+    <title>Biblioteca de E-books</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -13,18 +13,6 @@
             padding: 0;
             box-sizing: border-box;
             font-family: "Poppins", sans-serif;
-        }
-
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border-width: 0;
         }
 
         body {
@@ -63,12 +51,12 @@
 
         .container {
             width: 100%;
-            max-width: 480px;
+            max-width: 900px;
             background-color: rgba(255, 255, 255, 0.1);
             border: 2px solid rgba(255, 255, 255, 0.2);
             border-radius: 16px;
             color: #fff;
-            padding: 30px;
+            padding: 40px;
             box-shadow: 
                 0 8px 32px rgba(0, 0, 0, 0.3),
                 inset 0 1px 0 rgba(255, 255, 255, 0.2),
@@ -76,6 +64,7 @@
             backdrop-filter: blur(12px);
             z-index: 1;
             position: relative;
+            text-align: center;
         }
 
         .container::before {
@@ -93,250 +82,134 @@
 
         .header {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 40px;
         }
 
         .header h1 {
-            font-size: 26px;
-            margin-bottom: 8px;
+            font-size: 36px;
+            margin-bottom: 15px;
             background: linear-gradient(to right, #fff, #ffcccc);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             font-weight: 700;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         .header p {
             opacity: 0.9;
-            font-size: 15px;
-            font-weight: 300;
-        }
-
-        .file-info {
-            display: flex;
-            align-items: center;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 18px;
-            margin-bottom: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-        }
-
-        .file-icon {
-            font-size: 36px;
-            margin-right: 15px;
-            color: #fff;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-        }
-
-        .file-details h3 {
-            margin-bottom: 4px;
-            color: #fff;
-            font-weight: 600;
-            font-size: 16px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .file-details p {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 13px;
-        }
-
-        .form-group {
-            position: relative;
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: #fff;
-            font-size: 14px;
-        }
-
-        .input-box {
-            position: relative;
-            width: 100%;
-        }
-
-        .input-box input {
-            width: 100%;
-            height: 48px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            outline: none;
-            font-size: 15px;
-            color: #fff;
-            padding: 0 45px 0 20px;
-            transition: all 0.3s ease;
-        }
-
-        .input-box input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .input-box input:focus {
-            border-color: rgba(255, 255, 255, 0.5);
-            background-color: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
-        }
-
-        .input-box i {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
             font-size: 18px;
-            color: #fff;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .submit-btn {
-            width: 100%;
-            height: 48px;
-            border: none;
-            outline: none;
+        .ebooks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .ebook-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
-            background: linear-gradient(135deg, #8b0000, #5f0000);
-            color: #fff;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
-            margin-top: 10px;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(139, 0, 0, 0.4);
-        }
-
-        .submit-btn:active {
-            transform: translateY(0);
-        }
-
-        .submit-btn:disabled {
-            background: rgba(255, 255, 255, 0.2);
-            color: rgba(255, 255, 255, 0.5);
-            transform: none;
-            box-shadow: none;
-            cursor: not-allowed;
-        }
-
-        .message {
-            padding: 12px;
-            border-radius: 12px;
-            margin-top: 15px;
-            text-align: center;
-            font-weight: 500;
-            font-size: 14px;
+            padding: 30px;
             backdrop-filter: blur(5px);
-        }
-
-        .success {
-            background-color: rgba(76, 175, 80, 0.2);
-            border: 1px solid rgba(76, 175, 80, 0.3);
-            color: #a5d6a7;
-        }
-
-        .error {
-            background-color: rgba(244, 67, 54, 0.2);
-            border: 1px solid rgba(244, 67, 54, 0.3);
-            color: #ffabab;
-        }
-
-        .download-section {
-            margin-top: 20px;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .download-link {
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
             display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .ebook-card:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .ebook-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .ebook-card h2 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #fff;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .ebook-card p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .btn {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             width: 100%;
             padding: 14px;
-            background: linear-gradient(135deg, #28a745, #20c997);
+            background: linear-gradient(135deg, #8b0000, #5f0000);
             color: white;
             text-decoration: none;
             border-radius: 12px;
             font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
-            font-size: 15px;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+            margin-top: auto;
         }
 
-        .download-link:hover {
+        .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
-            color: white;
+            box-shadow: 0 6px 20px rgba(139, 0, 0, 0.4);
         }
 
         .footer {
             text-align: center;
-            padding-top: 20px;
-            margin-top: 20px;
+            padding-top: 40px;
+            margin-top: 40px;
             color: rgba(255, 255, 255, 0.7);
-            font-size: 13px;
+            font-size: 14px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .hidden {
-            display: none;
         }
 
         /* Responsividade */
         @media (max-width: 768px) {
             .container {
-                padding: 25px;
+                padding: 30px 25px;
+            }
+            
+            .header h1 {
+                font-size: 28px;
+            }
+            
+            .ebooks-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 25px 20px;
             }
             
             .header h1 {
                 font-size: 24px;
             }
             
-            .file-info {
-                padding: 15px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
+            .ebook-card {
                 padding: 20px;
-            }
-            
-            .header h1 {
-                font-size: 22px;
-            }
-            
-            .input-box input {
-                height: 44px;
-                font-size: 14px;
-            }
-            
-            .submit-btn {
-                height: 44px;
-                font-size: 15px;
-            }
-            
-            .file-details h3 {
-                font-size: 15px;
             }
         }
     </style>
@@ -344,132 +217,35 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Menos Custos, Mais Eficiência</h1>
-            <p>Preencha o formulário para baixar este e-book exclusivo</p>
+            <h1>Biblioteca de E-books Exclusivos</h1>
+            <p>Selecione um dos nossos e-books gratuitos para baixar. Preencha um formulário rápido e tenha acesso imediato ao conteúdo.</p>
         </div>
         
-        <div class="file-info">
-            <div class="file-icon">📊</div>
-            <div class="file-details">
-                <h3>E-book: Menos Custos, Mais Eficiência</h3>
-                <p>PDF • 20 páginas</p>
-            </div>
-        </div>
-        
-        <form id="downloadForm">
-            <div class="form-group">
-                <label for="nomeCompleto">Nome Completo</label>
-                <div class="input-box">
-                    <input type="text" id="nomeCompleto" placeholder="Seu nome completo" required>
-                    <i class='bx bx-user'></i>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label for="nomeEmpresa">Nome da Empresa</label>
-                <div class="input-box">
-                    <input type="text" id="nomeEmpresa" placeholder="Nome da sua empresa" required>
-                    <i class='bx bx-buildings'></i>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label for="email">E-mail</label>
-                <div class="input-box">
-                    <input type="email" id="email" placeholder="seu@email.com" required>
-                    <i class='bx bx-envelope'></i>
-                </div>
-            </div>
-            
-            <button type="submit" class="submit-btn" id="submitBtn">
-                <span>Enviar e Baixar E-book</span>
-            </button>
-            
-            <div id="message" class="message hidden"></div>
-            
-            <div id="downloadSection" class="download-section hidden">
-                <a href="https://www.dropbox.com/scl/fi/nr1tqasitlbbhsbosjcy1/E-BOOK-Menos-Custos-Mais-Efici-ncia.pdf?rlkey=xjoqzgrhpitudz1ee1eqnoftn&st=s2p43r00&dl=1" id="downloadLink" class="download-link" target="_blank">
+        <div class="ebooks-grid">
+            <a href="ebook1.html" class="ebook-card">
+                <div class="ebook-icon">📊</div>
+                <h2>Menos Custos, Mais Eficiência</h2>
+                <p>Descubra estratégias comprovadas para reduzir custos e aumentar a eficiência operacional da sua empresa.</p>
+                <span class="btn">
                     <i class='bx bx-download'></i>
-                    Baixar E-book Agora
-                </a>
-            </div>
-        </form>
+                    Baixar E-book
+                </span>
+            </a>
+            
+            <a href="ebook2.html" class="ebook-card">
+                <div class="ebook-icon">📝</div>
+                <h2>Contratação de Impacto</h2>
+                <p>Aprenda metodologias eficazes para realizar contratações que tragam impacto positivo para sua organização.</p>
+                <span class="btn">
+                    <i class='bx bx-download'></i>
+                    Baixar E-book
+                </span>
+            </a>
+        </div>
         
         <div class="footer">
             <p>Seus dados estão seguros conosco. Não compartilhamos suas informações.</p>
         </div>
     </div>
-
-    <!-- Firebase SDK -->
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-analytics.js";
-        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
-
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyABjCA5ADECN7ggXTj6ocBepHhe_KZ-jiI",
-            authDomain: "ebookprompt-1965a.firebaseapp.com",
-            projectId: "ebookprompt-1965a",
-            storageBucket: "ebookprompt-1965a.firebasestorage.app",
-            messagingSenderId: "70703768669",
-            appId: "1:70703768669:web:f6ac0e93e62e943c6719b4",
-            measurementId: "G-HF2NNYVXDK"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-        const db = getFirestore(app);
-
-        // Manipular envio do formulário
-        document.getElementById('downloadForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const submitBtn = document.getElementById('submitBtn');
-            const messageDiv = document.getElementById('message');
-            const downloadSection = document.getElementById('downloadSection');
-            
-            // Coletar dados
-            const formData = {
-                nomeCompleto: document.getElementById('nomeCompleto').value,
-                nomeEmpresa: document.getElementById('nomeEmpresa').value,
-                email: document.getElementById('email').value,
-                ebook: "1", // Identificador do e-book
-                timestamp: new Date()
-            };
-
-            try {
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = '<span>Enviando...</span>';
-
-                // Salvar no Firestore
-                await addDoc(collection(db, 'leads'), formData);
-                
-                // Mensagem de sucesso
-                messageDiv.textContent = 'Dados salvos com sucesso! Agora você pode baixar o e-book.';
-                messageDiv.className = 'message success';
-                messageDiv.classList.remove('hidden');
-                
-                // Mostrar link de download
-                downloadSection.classList.remove('hidden');
-                
-                // Alterar texto do botão
-                submitBtn.innerHTML = '<span>Dados Enviados!</span>';
-
-                // Scroll para o link de download
-                downloadSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-            } catch (error) {
-                console.error('Erro ao salvar dados:', error);
-                messageDiv.textContent = 'Erro ao enviar dados. Tente novamente.';
-                messageDiv.className = 'message error';
-                messageDiv.classList.remove('hidden');
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<span>Enviar e Baixar E-book</span>';
-            }
-        });
-    </script>
 </body>
 </html>
