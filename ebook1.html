@@ -36,7 +36,7 @@
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
             position: relative;
-            overflow: hidden;
+            overflow-x: hidden;
             padding: 20px;
         }
 
@@ -63,7 +63,7 @@
 
         .container {
             width: 100%;
-            max-width: 480px;
+            max-width: 580px;
             background-color: rgba(255, 255, 255, 0.1);
             border: 2px solid rgba(255, 255, 255, 0.2);
             border-radius: 16px;
@@ -97,7 +97,7 @@
         }
 
         .header h1 {
-            font-size: 26px;
+            font-size: 28px;
             margin-bottom: 8px;
             background: linear-gradient(to right, #fff, #ffcccc);
             -webkit-background-clip: text;
@@ -105,15 +105,93 @@
             color: transparent;
             font-weight: 700;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         .header p {
             opacity: 0.9;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .benefits {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .benefit {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 8px 15px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .benefit i {
+            color: #ffcccc;
+        }
+
+        .ebook-preview {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .ebook-preview h3 {
+            margin-bottom: 15px;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .preview-images {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .preview-item {
+            position: relative;
+            width: 150px;
+            height: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .preview-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .preview-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px;
+            font-size: 12px;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .preview-item:hover .preview-overlay {
+            transform: translateY(0);
         }
 
         .file-info {
@@ -139,9 +217,6 @@
             color: #fff;
             font-weight: 600;
             font-size: 16px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         .file-details p {
@@ -198,6 +273,21 @@
             transform: translateY(-50%);
             font-size: 18px;
             color: #fff;
+        }
+
+        .privacy-note {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 13px;
+            text-align: center;
+            border-left: 3px solid #ffcccc;
+        }
+
+        .privacy-note i {
+            margin-right: 5px;
+            color: #ffcccc;
         }
 
         .submit-btn {
@@ -301,6 +391,37 @@
             display: none;
         }
 
+        /* Modal para visualização expandida */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
         /* Responsividade */
         @media (max-width: 768px) {
             .container {
@@ -313,6 +434,11 @@
             
             .file-info {
                 padding: 15px;
+            }
+            
+            .preview-item {
+                width: 120px;
+                height: 160px;
             }
         }
 
@@ -338,6 +464,11 @@
             .file-details h3 {
                 font-size: 15px;
             }
+            
+            .preview-item {
+                width: 100px;
+                height: 140px;
+            }
         }
     </style>
 </head>
@@ -345,15 +476,53 @@
     <div class="container">
         <div class="header">
             <h1>Menos Custos, Mais Eficiência</h1>
-            <p>Preencha o formulário para baixar este e-book exclusivo</p>
+            <p>Descubra como reduzir custos com mão de obra e aumentar a produtividade</p>
+            
+            <div class="benefits">
+                <div class="benefit">
+                    <i class='bx bx-check-circle'></i>
+                    <span>Estratégias comprovadas</span>
+                </div>
+                <div class="benefit">
+                    <i class='bx bx-check-circle'></i>
+                    <span>Redução de custos</span>
+                </div>
+                <div class="benefit">
+                    <i class='bx bx-check-circle'></i>
+                    <span>Aumento de eficiência</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="ebook-preview">
+            <h3>Prévia do Conteúdo</h3>
+            <div class="preview-images">
+                <div class="preview-item" onclick="openModal('https://i.ibb.co/fG16V7ct/Gemini-Generated-Image-aiiri5aiiri5aiir.png')">
+                    <img src="https://i.ibb.co/fG16V7ct/Gemini-Generated-Image-aiiri5aiiri5aiir.png" alt="Página 1 do E-book">
+                    <div class="preview-overlay">Clique para expandir</div>
+                </div>
+                <div class="preview-item" onclick="openModal('https://i.ibb.co/zHSRdrLN/Gemini-Generated-Image-5i9ee95i9ee95i9e.png')">
+                    <img src="https://i.ibb.co/zHSRdrLN/Gemini-Generated-Image-5i9ee95i9ee95i9e.png" alt="Página 2 do E-book">
+                    <div class="preview-overlay">Clique para expandir</div>
+                </div>
+                <div class="preview-item" onclick="openModal('https://i.ibb.co/tTWJC85V/Gemini-Generated-Image-b8nx8yb8nx8yb8nx.png')">
+                    <img src="https://i.ibb.co/tTWJC85V/Gemini-Generated-Image-b8nx8yb8nx8yb8nx.png" alt="Página 3 do E-book">
+                    <div class="preview-overlay">Clique para expandir</div>
+                </div>
+            </div>
         </div>
         
         <div class="file-info">
             <div class="file-icon">📊</div>
             <div class="file-details">
                 <h3>E-book: Menos Custos, Mais Eficiência</h3>
-                <p>PDF • 20 páginas</p>
+                <p>PDF • 20 páginas • Estratégias práticas para redução de custos</p>
             </div>
+        </div>
+        
+        <div class="privacy-note">
+            <i class='bx bx-shield-alt'></i>
+            Seus dados estão seguros. Utilizamos apenas para controle de acesso e não compartilhamos com terceiros.
         </div>
         
         <form id="downloadForm">
@@ -382,7 +551,7 @@
             </div>
             
             <button type="submit" class="submit-btn" id="submitBtn">
-                <span>Enviar e Baixar E-book</span>
+                <span>Baixar E-book Agora</span>
             </button>
             
             <div id="message" class="message hidden"></div>
@@ -398,6 +567,12 @@
         <div class="footer">
             <p>Seus dados estão seguros conosco. Não compartilhamos suas informações.</p>
         </div>
+    </div>
+
+    <!-- Modal para visualização expandida das imagens -->
+    <div id="imageModal" class="modal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
     </div>
 
     <!-- Firebase SDK -->
@@ -467,7 +642,27 @@
                 messageDiv.className = 'message error';
                 messageDiv.classList.remove('hidden');
                 submitBtn.disabled = false;
-                submitBtn.innerHTML = '<span>Enviar e Baixar E-book</span>';
+                submitBtn.innerHTML = '<span>Baixar E-book Agora</span>';
+            }
+        });
+
+        // Funções para o modal de visualização de imagens
+        window.openModal = function(src) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'flex';
+            modalImg.src = src;
+        }
+
+        window.closeModal = function() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+        }
+
+        // Fechar modal ao clicar fora da imagem
+        document.getElementById('imageModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
             }
         });
     </script>
